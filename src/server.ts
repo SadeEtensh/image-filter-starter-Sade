@@ -45,4 +45,3 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   } );
 })();
 
-// Branch
