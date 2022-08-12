@@ -29,16 +29,17 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
   /**************************************************************************** */
   app.get('/filteredimage', async (req: Request, res: Request) => {
-      const { image_url } = req.query
+      const { image_url } = req.query    //taking image_url from query paramater
 
-      if( !image_url) {
+      if( !image_url) {                 // Url Validation
         res.status(400).json({
           message:"Bad Request:- Public Image is required"
         })
       }
-      const filteredImage = await filterImageFromURL(image_url)
+      const filteredImage = await filterImageFromURL(image_url) //call call filterImageFromURL(image_url) to filter the image
 
-      res.status(200).sendFile(filteredImage, () => {
+      // deletes any files on the server on finish of the response
+      res.status(200).sendFile(filteredImage, () => {        
         deleteLocalFiles([filteredImage])
       })
 
